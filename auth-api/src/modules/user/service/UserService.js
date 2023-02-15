@@ -10,9 +10,12 @@ class UserService {
     async findByEmail(req) {
         try {
             const { email } = req.params
+            const { authUser } = req
             this.validateRequestData(email)
             let user = await UserRepository.findByEmail(email)
             this.validateUserNotFound(user)
+            this.validateAuthenticatedUser(user, authUser)
+
             return {
                 status: httpStatus.SUCCESS,
                 user: {
@@ -44,6 +47,12 @@ class UserService {
                 httpStatus.BAD_REQUEST,
                 'User was not informed.'
             )
+        }
+    }
+
+    validateAuthenticatedUser(user, authUser) {
+        if (!authUser || (user.id !== authUser.id)) {
+            throw new UserException(httpStatus.FORBIDDEN, 'You cannot see this user data.')
         }
     }
 
