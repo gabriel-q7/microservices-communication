@@ -5,17 +5,22 @@ import br.com.commicros.productapi.modules.product.model.Product;
 import br.com.commicros.productapi.modules.supplier.dto.SupplierResponse;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import java.time.LocalDateTime;
 
 @Data
 @Builder
+@NoArgsConstructor
+@AllArgsConstructor
 public class ProductResponse {
 
     private Integer id;
     private String name;
+    @JsonProperty("quantity_available")
     private Integer quantityAvailable;
     @JsonProperty("created_At")
     @JsonFormat(pattern = "dd/MM/yyyy HH:mm:ss")

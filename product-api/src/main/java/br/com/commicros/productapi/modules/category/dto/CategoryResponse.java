@@ -1,7 +1,6 @@
 package br.com.commicros.productapi.modules.category.dto;
 
 import br.com.commicros.productapi.modules.category.model.Category;
-import br.com.commicros.productapi.modules.product.model.Product;
 import lombok.Data;
 import org.springframework.beans.BeanUtils;
 
